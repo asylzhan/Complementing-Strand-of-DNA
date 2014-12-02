@@ -12,32 +12,33 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSString *dna = @"GGTATGAAAAGTGCTCGGCGTAACCATGCTGAGAGAACTCTCGTGGAATCAGATCGGTTAAGGGGCATTGTGACCCAAACGTAGAGCAGGCATCGTCATTCCAGTTCATCGACTTCAAATGGAACAGGATTGGCACTAAAAAGACTTGGAAACATTGCGGACGGGAACTCTGTCAGCTGGGTACCCTGAGATCATAACAACGAACAAAGCTTTGTATGGAACCTGATTTTCGACTATTCTCGCATCTATGTTACTATCCGAGTGTGGGACTCCTGGGAATTCCTTGTCAAGACTGCATCGAAGTCGAGCCAACCAGCGCAGGTGACCCACAGCTCGATGTATCTACGATGTTGTTGGTTCGAGGACGCGTCCAACCCCGCGATGCCAGGTAATTTCAGTACGGATCAGATTCTAAGTTCCTCGTTCATGGCGTAGTAAATGGGATTCCGTACCTCACAGAGGAGCCGCGGAGCTAGAGATCTATTCCGCCTGCCCTGAATAGTATAGACCGAAACTGAGCAGATCGCTGGGTCCAAGATGACCATGGCGAGTAGCTGAAGTAGTCTGGCAAGCTCCAGGCAGTTCCGGTCCGATTCGACAGAGGGAATTTACTCCTTAGGGATGTTACGGACTCGAGTTGTAATCCCGGAATTTTGGTCTGCCGCCTACCGTCGGCCTCTGATTCGGTCAAGCCTCAACTGGGCGAGTCGCTTCTGCAGCATGTCCGGTATACTCCTCAAGGATTTCAGATATAAACTCGGAACGTCTTTCCATATGCGTAAAAGGACCCCGACGGATATAGTGTCTTCCTCATTTCCTTACTATGCATTGTCACCACTAAAGCTAATGCTTCCGTGGCGTAGGTACAGGTGCGTTGGAGTAGTCCACGCAATTGACGACTTTAAACGTCAGTCAACTTCGCA";
-        NSString *dnaRepl = [[NSString alloc] init];
+        NSString *dnaCharToString = [[NSString alloc] init];
         NSMutableString *replacedString = [[NSMutableString alloc] init];
         
         for (int i =0; i < [dna length]; i++) {
             char character = [dna characterAtIndex:i];
             if (character=='A') {
                 character = 'T';
-                dnaRepl = [NSString stringWithFormat:@"%c", character];
-                [replacedString insertString:dnaRepl atIndex:i];
+                dnaCharToString = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaCharToString atIndex:i];
             }
             else if(character=='T'){
                 character = 'A';
-                dnaRepl = [NSString stringWithFormat:@"%c", character];
-                [replacedString insertString:dnaRepl atIndex:i];
+                dnaCharToString = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaCharToString atIndex:i];
             }
             else if(character == 'C'){
                 character='G';
-                dnaRepl = [NSString stringWithFormat:@"%c", character];
-                [replacedString insertString:dnaRepl atIndex:i];
+                dnaCharToString = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaCharToString atIndex:i];
             }
             else if (character == 'G'){
                 character='C';
-                dnaRepl = [NSString stringWithFormat:@"%c", character];
-                [replacedString insertString:dnaRepl atIndex:i];
+                dnaCharToString = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaCharToString atIndex:i];
             }
         }
+        
         
         NSMutableString *revString;
         NSUInteger len = [replacedString length];
@@ -45,9 +46,10 @@ int main(int argc, const char * argv[]) {
         while (len>0) {
             [revString appendString:[NSString stringWithFormat:@"%c", [replacedString characterAtIndex:--len]]];
         }
+        
         NSLog(@"%@", revString);
-    }
     
+    }
     return 0;
 }
 
