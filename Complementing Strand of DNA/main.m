@@ -8,10 +8,49 @@
 
 #import <Foundation/Foundation.h>
 
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        NSString *dna = @"GGTATGAAAAGTGCTCGGCGTAACCATGCTGAGAGAACTCTCGTGGAATCAGATCGGTTAAGGGGCATTGTGACCCAAACGTAGAGCAGGCATCGTCATTCCAGTTCATCGACTTCAAATGGAACAGGATTGGCACTAAAAAGACTTGGAAACATTGCGGACGGGAACTCTGTCAGCTGGGTACCCTGAGATCATAACAACGAACAAAGCTTTGTATGGAACCTGATTTTCGACTATTCTCGCATCTATGTTACTATCCGAGTGTGGGACTCCTGGGAATTCCTTGTCAAGACTGCATCGAAGTCGAGCCAACCAGCGCAGGTGACCCACAGCTCGATGTATCTACGATGTTGTTGGTTCGAGGACGCGTCCAACCCCGCGATGCCAGGTAATTTCAGTACGGATCAGATTCTAAGTTCCTCGTTCATGGCGTAGTAAATGGGATTCCGTACCTCACAGAGGAGCCGCGGAGCTAGAGATCTATTCCGCCTGCCCTGAATAGTATAGACCGAAACTGAGCAGATCGCTGGGTCCAAGATGACCATGGCGAGTAGCTGAAGTAGTCTGGCAAGCTCCAGGCAGTTCCGGTCCGATTCGACAGAGGGAATTTACTCCTTAGGGATGTTACGGACTCGAGTTGTAATCCCGGAATTTTGGTCTGCCGCCTACCGTCGGCCTCTGATTCGGTCAAGCCTCAACTGGGCGAGTCGCTTCTGCAGCATGTCCGGTATACTCCTCAAGGATTTCAGATATAAACTCGGAACGTCTTTCCATATGCGTAAAAGGACCCCGACGGATATAGTGTCTTCCTCATTTCCTTACTATGCATTGTCACCACTAAAGCTAATGCTTCCGTGGCGTAGGTACAGGTGCGTTGGAGTAGTCCACGCAATTGACGACTTTAAACGTCAGTCAACTTCGCA";
+        NSString *dnaRepl = [[NSString alloc] init];
+        NSMutableString *replacedString = [[NSMutableString alloc] init];
+        
+        for (int i =0; i < [dna length]; i++) {
+            char character = [dna characterAtIndex:i];
+            if (character=='A') {
+                character = 'T';
+                dnaRepl = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaRepl atIndex:i];
+            }
+            else if(character=='T'){
+                character = 'A';
+                dnaRepl = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaRepl atIndex:i];
+            }
+            else if(character == 'C'){
+                character='G';
+                dnaRepl = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaRepl atIndex:i];
+            }
+            else if (character == 'G'){
+                character='C';
+                dnaRepl = [NSString stringWithFormat:@"%c", character];
+                [replacedString insertString:dnaRepl atIndex:i];
+            }
+        }
+        
+        NSMutableString *revString;
+        NSUInteger len = [replacedString length];
+        revString = [NSMutableString stringWithCapacity:len];
+        while (len>0) {
+            [revString appendString:[NSString stringWithFormat:@"%c", [replacedString characterAtIndex:--len]]];
+        }
+        NSLog(@"%@", revString);
     }
+    
     return 0;
 }
+
+
+
+
